@@ -19,7 +19,8 @@ public class ITextExample
         {
             // creation of the different writers
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-
+            GenericTags event = new GenericTags();
+			writer.setPageEvent(event);
             // various fonts
             BaseFont bf_helv = BaseFont.createFont(BaseFont.HELVETICA, "Cp1252", false);
             BaseFont bf_times = BaseFont.createFont(BaseFont.TIMES_ROMAN, "Cp1252", false);
@@ -69,7 +70,10 @@ public class ITextExample
             document.newPage();
 
             // add text in three paragraphs from top to bottom with various font styles
-            Paragraph par = new Paragraph("bold paragraph");
+            Paragraph par = new Paragraph();
+            Chunk chunk = new Chunk("Oresr bold paragraph");
+            chunk.setGenericTag("strip");
+            par.add(chunk);
             par.getFont().setStyle(Font.BOLD);
             document.add(par);
             par = new Paragraph("italic paragraph");

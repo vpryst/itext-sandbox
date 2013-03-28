@@ -2,8 +2,10 @@ package org.halyph.itext;
 
 import java.io.FileOutputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 import com.lowagie.text.Document;
+import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.html.simpleparser.HTMLWorker;
 import com.lowagie.text.pdf.PdfWriter;
@@ -13,9 +15,12 @@ public class HtmlToPDFDemo {
 	public static void main(String... args) {
 		try {
 			Document document = new Document(PageSize.LETTER);
-			// PdfWriter pdfWriter =
-			PdfWriter.getInstance(document, new FileOutputStream(
-					"iTextExample_HTML2PDF.pdf"));
+			PdfWriter writer = PdfWriter.getInstance(document,
+					new FileOutputStream("iTextExample_HTML2PDF.pdf"));
+
+			GenericTags event = new GenericTags();
+			writer.setPageEvent(event);
+
 			document.open();
 			document.addAuthor("Real Gagnon");
 			document.addCreator("Real's HowTo");
@@ -38,7 +43,10 @@ public class HtmlToPDFDemo {
 					+ "<ol><li>&nbsp;Text</li><li>Text 2</li><li>Text 3</li></ol>"
 					+ "<p><font size=\"1\"><b>Bold</b> </font><i>Italic </i><font size=\"3\"><u>Underscore </u></font><br></p>"
 					+ "</body></html>";
-			htmlWorker.parse(new StringReader(str));
+			ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
+			for(Object line : list) {
+				document.add((Element) line);
+			}
 			document.close();
 			System.out.println("Done");
 		} catch (Exception e) {
