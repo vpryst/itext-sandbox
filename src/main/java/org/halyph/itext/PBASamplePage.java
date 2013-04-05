@@ -155,21 +155,21 @@ public class PBASamplePage {
         public void renderRadio(PdfContentByte content, Rectangle rect) {
         	
             float x1 = rect.getLeft()-10;
-			float y1 = rect.getBottom()-24;
-			float x2 = x1+10;
-			float y2 = y1-10;
-			
-			
-			content.circle(x1, y1, 5);
-//			content.drawRadioField(x1, y1, 10, 10, false);
+			float y1 = rect.getBottom()-24;			
+			float w = 5;
+			content.circle(x1, y1, w);
+			System.out.format("Radio: x=%f, y=%f, w=%f\n", x1, y1,
+					w);
             content.stroke();
         }
         
         public void renderCheck(PdfContentByte content, Rectangle rect) {
         	float w = 10;
-            content.rectangle(rect.getLeft() - 18, rect.getBottom() - 18f,
-            				w, w);
+            float x = rect.getLeft() - 18;
+			float y = rect.getBottom() - 18f;
+			content.rectangle(x, y, w, w);
             content.stroke();
+            System.out.format("Checkbox: x=%f, y=%f, w=%f\n", x, y,w);
         }
     }
 	
@@ -199,11 +199,13 @@ public class PBASamplePage {
 		Chapter chapter = null;
 		Section section = null;
 		for (int i = 1; i < 3; i++) {
+			System.out.println("Page "  + i);
 			Paragraph par = createParagraph(document, i);
 			par.setSpacingAfter(20);
 			par.setSpacingBefore(20);
 			chapter = new Chapter(i);
-			section = chapter.addSection("Q1");
+			chapter.setNumberDepth(0);
+			section = chapter.addSection("Q" + i, 0);			
 			section.add(par);
 			section.add(createParagraphChoice(document, "<i>ASCII85Decode</i> a filter <u>used</u	> to put the stream into 7-bit <a title=\"ASCII\" href=\"/wiki/ASCII\">ASCII</a>"));
 			section.add(createParagraphChoice(document, "<b>ASCIIHexDecode</b> similar to ASCII85Decode but less compact"));
