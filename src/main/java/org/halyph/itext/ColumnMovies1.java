@@ -31,6 +31,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -148,6 +149,7 @@ public class ColumnMovies1 implements PdfPTableEvent {
 		// a table with three columns
 		PdfPTable table = new PdfPTable(2);
 		table.setWidthPercentage(100);
+		table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 		// table.setSplitRows(true);
 		// the cell object
 		PdfPCell cell;
@@ -155,7 +157,7 @@ public class ColumnMovies1 implements PdfPTableEvent {
 		cell = new PdfPCell(new Phrase(
 				"================ Table 1 Cell with colspan 3"));
 		cell.setColspan(2);
-		// cell.setBorder(Rectangle.NO_BORDER);
+		cell.setBorder(Rectangle.NO_BORDER);
 		table.addCell(cell);
 
 		PdfPTable table2 = new PdfPTable(2);
@@ -168,10 +170,12 @@ public class ColumnMovies1 implements PdfPTableEvent {
 				new Phrase(
 						"9990     VestVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eget mi at sem iaculis hendrerit. Nulla facilisi. Etiam sed elit. In viverra dapibus sapien. Aliquam nisi justo, ornare non, ultricies vitae, aliquam sit amet, risus! Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus risus. Vestibulum pretium augue non mi. Sed magna. In hac habitasse platea dictumst. Quisque massa. Etiam viverra diam ullaibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eget mi at sem iaculis hendrerit. Nulla facilisi. Etiam sed elit. In viverra dapibus sapien. Aliquam nisi justo, ornare non, ultricies vitae, aliquam sit amet, risus! Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus risus. Vestibulum pretium augue non mi. Sed magna. In hac habitasse platea dictumst. Quisque massa. Etiam viverra diam ulla.\n\n"));
 		cell.setColspan(2);
+		cell.setBorder(Rectangle.NO_BORDER);
 		table.addCell(cell);
 
 		cell = new PdfPCell(table2);
 		cell.setColspan(2);
+		cell.setBorder(Rectangle.NO_BORDER);
 		table.addCell(cell);
 		int end = (new Random()).nextInt(15);
 		for (int i = 0; i < end; i++) {
@@ -181,7 +185,7 @@ public class ColumnMovies1 implements PdfPTableEvent {
 			table.addCell("row 2; cell 2: " + i);
 		}
 		
-		table.getDefaultCell().setBorder(2);
+		table.getDefaultCell().setBorder(0);
 		table.setTableEvent(this);
 		return table;
 	}
@@ -206,10 +210,13 @@ public class ColumnMovies1 implements PdfPTableEvent {
 		 PdfContentByte background = canvas[PdfPTable.BASECANVAS];
          background.saveState();
          background.setCMYKColorFill(0x00, 0x00, 0xFF, 0x0F);
+         background.setRGBColorStroke(0x00, 0xFF, 0x00);
          background.rectangle(
              width[0][0], height[height.length - 1],
              width[0][1] - width[0][0], height[0] - height[height.length - 1]);
-         background.fill();
+//         background.fill();
+//         background.stroke();
+         background.fillStroke();
          background.restoreState();
         tableNum++;
 		System.out.format("Table %d, coord[%s, [%s,%s]\n", tableNum, Arrays.toString(width[0]), height[0], height[height.length - 1]);
