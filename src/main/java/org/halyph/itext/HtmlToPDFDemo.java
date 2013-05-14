@@ -1,5 +1,7 @@
 package org.halyph.itext;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -11,13 +13,14 @@ import com.lowagie.text.html.simpleparser.HTMLWorker;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class HtmlToPDFDemo {
-
+	 public static final String RESULT
+     = String.format("result/iTextExample_HTML2PDF%d.pdf", System.currentTimeMillis());;
 	public static void main(String... args) {
 		try {
 			Document document = new Document(PageSize.LETTER);
+			File pdfFile = File.createTempFile("iTextExample_HTML2PDF", ".pdf");
 			PdfWriter writer = PdfWriter.getInstance(document,
-					new FileOutputStream("iTextExample_HTML2PDF.pdf"));
-
+					new FileOutputStream(pdfFile));
 			GenericTags event = new GenericTags();
 			writer.setPageEvent(event);
 
@@ -31,7 +34,7 @@ public class HtmlToPDFDemo {
 			HTMLWorker htmlWorker = new HTMLWorker(document);
 			String str = "<html><head></head><body>"
 					+ "<a href='http://www.rgagnon.com/howto.html'><b>Real's HowTo</b></a>"
-					+ "<h1>Show your support</h1>"
+					+ "<h1>VP Test - Show your support</h1>"
 					+ "<p>It DOES cost a lot to produce this site - in ISP storage and transfer fees, "
 					+ "in personal hardware and software costs to set up test environments, and above all,"
 					+ "the huge amounts of time it takes for one person to design and write the actual content."
@@ -41,7 +44,8 @@ public class HtmlToPDFDemo {
 					+ "<P><br><table border='1'><tr><td>Java HowTo<tr>"
 					+ "<td bgcolor='red'>Javascript HowTo<tr><td>Powerbuilder HowTo</table>"
 					+ "<ol><li>&nbsp;Text</li><li>Text 2</li><li>Text 3</li></ol>"
-					+ "<p><font size=\"1\"><b>Bold</b> </font><i>Italic </i><font size=\"3\"><u>Underscore </u></font><br></p>"
+					+ "<p><font size=\"1\" ><b>Bold</b> </font><i>Italic </i><font size=\"3\"><u>Underscore </u></font><br></p>"
+//					+ "<span style=\"font-size: medium;font-family: Arial;\">Two trains started from stations A and B, 300 km apart with speeds 40 km/hr and 60 km/hr respectively towards each other at the same time. At the same time a bird started flying from station A to station B with speed 100 km/hr.&nbsp; On the flight when it reached the second train it turned back. When it reached the first train it turned back. This continued till the trains met each other on the way. Is the distance traveled by the bird deterministic?</span>"
 					+ "</body></html>";
 			ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
 			for(Object line : list) {
@@ -49,6 +53,7 @@ public class HtmlToPDFDemo {
 			}
 			document.close();
 			System.out.println("Done");
+			Desktop.getDesktop().open(pdfFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

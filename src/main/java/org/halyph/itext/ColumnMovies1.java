@@ -14,12 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-
-
-
-
-
-
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPCell;
