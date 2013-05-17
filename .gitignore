@@ -8,3 +8,5 @@ src/main/webapp/META-INF
 .idea
 *.iml
 *.pdf
+.checkstyle
+CSS_keys.txt
