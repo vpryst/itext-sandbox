@@ -7,6 +7,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.vpryst.itext.ChangeHtmlWorker;
 import org.vpryst.itext.MyFontFactory;
 
 import com.lowagie.text.Document;
@@ -33,7 +34,7 @@ public class OIHtmlToPDFDemo {
             document.addCreationDate();
             document.addTitle("Please read this");
 
-            HTMLWorker htmlWorker = new HTMLWorker(document);
+            ChangeHtmlWorker htmlWorker = new ChangeHtmlWorker(document);
             String str =
 //                "<table border='1'><tr>"
 //                    +"<td style=\"color: blue\">Javascript HowTo color blue<tr>"
