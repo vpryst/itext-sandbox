@@ -1,4 +1,4 @@
-package org.vpryst.itext;
+package com.lowagie.text.html.ex;
 
 /*
  * Copyright 2004 Paulo Soares
@@ -59,7 +59,7 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 import com.lowagie.text.html.HtmlTags;
-import com.lowagie.text.html.Markup;
+
 import com.lowagie.text.html.simpleparser.ALink;
 import com.lowagie.text.html.simpleparser.ChainedProperties;
 import com.lowagie.text.html.simpleparser.FactoryProperties;
@@ -87,6 +87,7 @@ import com.lowagie.text.FontProvider;
 import com.lowagie.text.xml.simpleparser.SimpleXMLDocHandler;
 import com.lowagie.text.xml.simpleparser.SimpleXMLParser;
 
+import static com.lowagie.text.html.ex.ExMarkup.*;;
 public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
 
     protected ArrayList objectList;
@@ -239,7 +240,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
                 String width = (String) h.get("width");
                 float hrWidth = 1;
                 if (width != null) {
-                    float tmpWidth = Markup.parseLength(width, Markup.DEFAULT_FONT_SIZE);
+                    float tmpWidth = parseLength(width, DEFAULT_FONT_SIZE);
                     if (tmpWidth > 0)
                         hrWidth = tmpWidth;
                     if (!width.endsWith("%"))
@@ -248,7 +249,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
                 String size = (String) h.get("size");
                 float hrSize = 1;
                 if (size != null) {
-                    float tmpSize = Markup.parseLength(size, Markup.DEFAULT_FONT_SIZE);
+                    float tmpSize = parseLength(size, DEFAULT_FONT_SIZE);
                     if (tmpSize > 0)
                         hrSize = tmpSize;
                 }
@@ -307,11 +308,11 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
                     img.setSpacingBefore(Float.parseFloat(before));
                 if (after != null)
                     img.setSpacingAfter(Float.parseFloat(after));
-                float actualFontSize = Markup.parseLength(cprops.getProperty(ElementTags.SIZE), Markup.DEFAULT_FONT_SIZE);
+                float actualFontSize = parseLength(cprops.getProperty(ElementTags.SIZE), DEFAULT_FONT_SIZE);
                 if (actualFontSize <= 0f)
-                    actualFontSize = Markup.DEFAULT_FONT_SIZE;
-                float widthInPoints = Markup.parseLength(width, actualFontSize);
-                float heightInPoints = Markup.parseLength(height, actualFontSize);
+                    actualFontSize = DEFAULT_FONT_SIZE;
+                float widthInPoints = parseLength(width, actualFontSize);
+                float heightInPoints = parseLength(height, actualFontSize);
                 if (widthInPoints > 0 && heightInPoints > 0) {
                     img.scaleAbsolute(widthInPoints, heightInPoints);
                 } else if (widthInPoints > 0) {

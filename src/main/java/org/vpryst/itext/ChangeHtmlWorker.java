@@ -17,6 +17,7 @@ import com.lowagie.text.ListItem;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.html.HtmlTags;
 import com.lowagie.text.html.Markup;
+import com.lowagie.text.html.ex.ExHTMLWorker;
 import com.lowagie.text.html.simpleparser.ChainedProperties;
 import com.lowagie.text.html.simpleparser.FactoryProperties;
 import com.lowagie.text.html.simpleparser.HTMLWorker;

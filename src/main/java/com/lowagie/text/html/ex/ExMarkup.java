@@ -1,4 +1,4 @@
-package com.lowagie.text.html;
+package com.lowagie.text.html.ex;
 
 /*
  * $Id: Markup.java 3654 2009-01-21 16:11:00Z blowagie $
@@ -57,11 +57,13 @@ import java.awt.Color;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import com.lowagie.text.html.WebColors;
+
 /**
  * A class that contains all the possible tagnames and their attributes.
  */
 
-public class Markup {
+public class ExMarkup {
 
     // iText specific
 
