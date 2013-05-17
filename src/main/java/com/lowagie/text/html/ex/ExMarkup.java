@@ -61,6 +61,20 @@ import com.lowagie.text.html.WebColors;
 
 /**
  * A class that contains all the possible tagnames and their attributes.
+ * 
+ * THIS FILE WAS EDITED 
+ * ADD FONT SIZE
+ *  xx-small
+ *  x-small
+ *  small
+ *  medium
+ *  large
+ *  x-large
+ *  xx-large
+ *  smaller
+ *  larger
+ * 
+ *  to method parseLength(String string, float actualFontSize)
  */
 
 public class ExMarkup {

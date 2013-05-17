@@ -5,14 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.vpryst.itext.MyFontFactory;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.html.simpleparser.HTMLWorker;
+import com.lowagie.text.html.ex.ExHTMLWorker;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class HtmlToPDFDemo {
@@ -33,7 +30,7 @@ public class HtmlToPDFDemo {
             document.addCreationDate();
             document.addTitle("Please read this");
 
-            HTMLWorker htmlWorker = new HTMLWorker(document);
+            ExHTMLWorker htmlWorker = new ExHTMLWorker(document);
             String str =
                 "<html><head></head><body>" + "<a href='http://www.rgagnon.com/howto.html'><b>Real's HowTo</b></a>"
                     + "<h1>VP Test - Show your support</h1>"
@@ -126,10 +123,7 @@ public class HtmlToPDFDemo {
                     + "<p style=\"display: none\">display: none</p>" +
 
                     "<div bgcolor='blue'>asdfghjkl;,mnbvcxasdfghjk </div>" + "</body></html>";
-            //ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("font_factory", new MyFontFactory());
-            ArrayList list = htmlWorker.parseToList(new StringReader(str), null, map);
+            ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
             for (Object line : list) {
                 document.add((Element) line);
             }

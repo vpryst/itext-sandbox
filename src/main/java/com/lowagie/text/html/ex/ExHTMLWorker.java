@@ -62,7 +62,7 @@ import com.lowagie.text.html.HtmlTags;
 
 import com.lowagie.text.html.simpleparser.ALink;
 import com.lowagie.text.html.simpleparser.ChainedProperties;
-import com.lowagie.text.html.simpleparser.FactoryProperties;
+
 import com.lowagie.text.html.simpleparser.ImageProvider;
 import com.lowagie.text.html.simpleparser.Img;
 import com.lowagie.text.html.simpleparser.IncCell;
@@ -87,7 +87,13 @@ import com.lowagie.text.FontProvider;
 import com.lowagie.text.xml.simpleparser.SimpleXMLDocHandler;
 import com.lowagie.text.xml.simpleparser.SimpleXMLParser;
 
-import static com.lowagie.text.html.ex.ExMarkup.*;;
+import static com.lowagie.text.html.ex.ExMarkup.*;
+import static com.lowagie.text.html.ex.ExFactoryProperties.*;
+    /**
+     * THIS FILE WAS EDITED TO CHANGE MARKUP.CLASS
+     */
+
+
 public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
 
     protected ArrayList objectList;
@@ -116,7 +122,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
 
     private HashMap interfaceProps;
 
-    private FactoryProperties factoryProperties = new FactoryProperties();
+    private ExFactoryProperties factoryProperties = new ExFactoryProperties();
 
     /**
      * Creates a new instance of HTMLWorker
@@ -190,14 +196,14 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
             return;
         try {
             style.applyStyle(tag, h);
-            String follow = (String) FactoryProperties.followTags.get(tag);
+            String follow = (String) followTags.get(tag);
             if (follow != null) {
                 HashMap prop = new HashMap();
                 prop.put(follow, null);
                 cprops.addToChain(follow, prop);
                 return;
             }
-            FactoryProperties.insertStyle(h, cprops);
+            insertStyle(h, cprops);
             if (tag.equals(HtmlTags.ANCHOR)) {
                 cprops.addToChain(tag, h);
                 if (currentParagraph == null) {
@@ -344,7 +350,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
                 } else {
                     cprops.removeChain(tag);
                     if (currentParagraph == null) {
-                        currentParagraph = FactoryProperties.createParagraph(cprops);
+                        currentParagraph = createParagraph(cprops);
                     }
                     currentParagraph.add(new Chunk(img, 0, 0));
                 }
@@ -394,7 +400,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
                 skipText = false;
                 pendingLI = true;
                 cprops.addToChain(tag, h);
-                ListItem item = FactoryProperties.createListItem(cprops);
+                ListItem item = createListItem(cprops);
                 stack.push(item);
                 return;
             }
@@ -445,7 +451,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
         if (!tagsSupported.containsKey(tag))
             return;
         try {
-            String follow = (String) FactoryProperties.followTags.get(tag);
+            String follow = (String) followTags.get(tag);
             if (follow != null) {
                 cprops.removeChain(follow);
                 return;
@@ -619,7 +625,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
         String content = str;
         if (isPRE) {
             if (currentParagraph == null) {
-                currentParagraph = FactoryProperties.createParagraph(cprops);
+                currentParagraph = createParagraph(cprops);
             }
             Chunk chunk = factoryProperties.createChunk(content, cprops);
             currentParagraph.add(chunk);
@@ -656,7 +662,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
             }
         }
         if (currentParagraph == null) {
-            currentParagraph = FactoryProperties.createParagraph(cprops);
+            currentParagraph = createParagraph(cprops);
         }
         Chunk chunk = factoryProperties.createChunk(buf.toString(), cprops);
         currentParagraph.add(chunk);

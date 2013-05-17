@@ -7,13 +7,10 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.vpryst.itext.ChangeHtmlWorker;
-import org.vpryst.itext.MyFontFactory;
-
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.html.simpleparser.HTMLWorker;
+import com.lowagie.text.html.ex.ExHTMLWorker;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class OIHtmlToPDFDemo {
@@ -34,7 +31,7 @@ public class OIHtmlToPDFDemo {
             document.addCreationDate();
             document.addTitle("Please read this");
 
-            ChangeHtmlWorker htmlWorker = new ChangeHtmlWorker(document);
+            ExHTMLWorker htmlWorker = new ExHTMLWorker(document);
             String str =
 //                "<table border='1'><tr>"
 //                    +"<td style=\"color: blue\">Javascript HowTo color blue<tr>"
@@ -46,10 +43,7 @@ public class OIHtmlToPDFDemo {
                 + "<p style=\"text-align: left\"><span style=\"font-family: Arial;\">Two trains started from stations A and B, 300 km apart with speeds 40 km/hr and 60 km/hr respectively towards each other at the same time. At the same time a bird started flying from station A to station B with speed 100 km/hr.&nbsp; On the flight when it reached the second train it turned back. When it reached the first train it turned back. This continued till the trains met each other on the way. Is the distance traveled by the bird deterministic?</span></p>"
                 + "<p style=\"text-align: center\"><span style=\"font-family: Arial;\">Two trains started from stations A and B, 300 km apart with speeds 40 km/hr and 60 km/hr respectively towards each other at the same time. At the same time a bird started flying from station A to station B with speed 100 km/hr.&nbsp; On the flight when it reached the second train it turned back. When it reached the first train it turned back. This continued till the trains met each other on the way. Is the distance traveled by the bird deterministic?</span></p>";
             
-            //ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("font_factory", new MyFontFactory());
-            ArrayList list = htmlWorker.parseToList(new StringReader(str), null, map);
+            ArrayList list = htmlWorker.parseToList(new StringReader(str), null);
             for (Object line : list) {
                 document.add((Element) line);
             }
