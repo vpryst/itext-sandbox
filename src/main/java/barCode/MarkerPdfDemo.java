@@ -30,15 +30,14 @@ public class MarkerPdfDemo {
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filename));
         // step 3
         document.open();
-     
-        
+
         PdfContentByte canvas = writer.getDirectContent();
 
-        mark(canvas,200,200,7);
-        mark(canvas,220,220,14);
-        mark(canvas,280,280,20);
-        mark(canvas,350,350,30);
-        
+        mark(canvas, 200, 200, 6);
+        mark(canvas, 220, 220, 14);
+        mark(canvas, 280, 280, 20);
+        mark(canvas, 350, 350, 30);
+
         // step 5
         document.close();
 
