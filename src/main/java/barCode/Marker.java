@@ -18,7 +18,7 @@ public class Marker {
     public static void mark(PdfContentByte content, int x, int y, float size) {
         // Proportion 1:1:3:1:1
         int sizeStep = (int) (size / 7);
-        int center = (int) (size/2);
+        int center = (int) (size / 2);
         if (sizeStep < 1) {
             try {
                 throw new IllegalArgumentException("Marker must be aliquot 7");
@@ -26,7 +26,7 @@ public class Marker {
                 e.printStackTrace();
             }
         } else {
-            Rectangle rec = new Rectangle(x-center, y-center, x + center, y + center);
+            Rectangle rec = new Rectangle(x - center, y - center, x + center, y + center);
 
             // settings of big rectangle
             rec.setBorder(Rectangle.BOX);
@@ -36,7 +36,7 @@ public class Marker {
             content.rectangle(rec);
 
             // setting of small rectangle white border
-            rec = new Rectangle(x + sizeStep-center, y + sizeStep-center, x - sizeStep + center, y - sizeStep + center);
+            rec = new Rectangle(x + sizeStep - center, y + sizeStep - center, x - sizeStep + center, y - sizeStep + center);
             rec.setBorder(Rectangle.BOX);
             rec.setBorderWidth(sizeStep);
             rec.setBorderColor(Color.white);

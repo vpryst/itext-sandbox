@@ -35,8 +35,8 @@ public class MarkerPdfDemo {
 
         mark(canvas, 200, 200, 6);
         mark(canvas, 220, 220, 14);
-        mark(canvas, 280, 280, 20);
-        mark(canvas, 350, 350, 30);
+        mark(canvas, 280, 280, 21);
+        mark(canvas, 350, 350, 35);
 
         // step 5
         document.close();
