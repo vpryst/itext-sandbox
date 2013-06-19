@@ -15,10 +15,10 @@ public class Marker {
      * @param y - lower left y
      * @param size - size of mark
      */
-    public static void mark(PdfContentByte content, int x, int y, float size) {
+    public static void mark(PdfContentByte content, int x, int y, int size) {
         // Proportion 1:1:3:1:1
-        int sizeStep = (int) (size / 7);
-        int center = (int) (size / 2);
+        int sizeStep = size / 7;
+        int center = size / 2;
         if (sizeStep < 1) {
             try {
                 throw new IllegalArgumentException("Marker must be aliquot 7");

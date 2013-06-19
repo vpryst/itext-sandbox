@@ -1,6 +1,7 @@
 package barCode;
 
 import static barCode.Marker.mark;
+import static barCode.MarkerCircle.markCircle;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -33,10 +34,15 @@ public class MarkerPdfDemo {
 
         PdfContentByte canvas = writer.getDirectContent();
 
-        mark(canvas, 200, 200, 6);
-        mark(canvas, 220, 220, 14);
-        mark(canvas, 280, 280, 21);
-        mark(canvas, 350, 350, 35);
+//        mark(canvas, 200, 200, 6);
+//        mark(canvas, 220, 220, 14);
+//        mark(canvas, 280, 280, 21);
+//        mark(canvas, 350, 350, 35);
+        
+      markCircle(canvas, 200, 200, 7);
+      markCircle(canvas, 220, 220, 14);
+      markCircle(canvas, 280, 280, 21);
+      markCircle(canvas, 350, 350, 35);
 
         // step 5
         document.close();
