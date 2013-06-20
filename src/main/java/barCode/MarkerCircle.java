@@ -29,12 +29,12 @@ public class MarkerCircle {
         } else {
             
 
-            content.circle(x, y, size);
+            content.circle(x, y, center);
             content.fill();
             //content.setRGBColorFill(0x00, 0x00, 0x00);
             content.setRGBColorStroke(0xFF, 0xFF, 0xFF);
             content.setLineWidth(sizeStep);
-            content.circle(x, y, size - (sizeStep));
+            content.circle(x, y, (float) (center - (sizeStep * 1.5)));
             
 //            content.setRGBColorFill(0xFF, 0xFF, 0xFF);
 //            content.setLineWidth(10f);
