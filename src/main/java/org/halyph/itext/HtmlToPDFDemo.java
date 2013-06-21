@@ -6,10 +6,13 @@ import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 
+import static barCode.MarkerCircle.*;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.html.ex.ExHTMLWorker;
+import com.lowagie.text.html.ex.HTMLWorkerEx;
+import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class HtmlToPDFDemo {
@@ -17,18 +20,24 @@ public class HtmlToPDFDemo {
     
     public static void main(String... args) {
         try {
-            Document document = new Document(PageSize.LETTER);
+            Document document = new Document(PageSize.A4);
             File pdfFile = File.createTempFile("iTextExample_HTML2PDF", ".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
-
+            
+            document.setMargins(50, 50, 50, 50);
+            
             document.open();
             document.addAuthor("Real Gagnon");
             document.addCreator("Real's HowTo");
             document.addSubject("Thanks for your support");
             document.addCreationDate();
             document.addTitle("Please read this");
+            
+            PdfContentByte canvas = writer.getDirectContent();
 
-            ExHTMLWorker htmlWorker = new ExHTMLWorker(document);
+            
+            
+            HTMLWorkerEx htmlWorker = new HTMLWorkerEx(document);
             String str = "";
                 /*"<html><head></head><body>" + "<a href='http://www.rgagnon.com/howto.html'><b>Real's HowTo</b></a>"
                     + "<h1>VP Test - Show your support</h1>"
@@ -170,6 +179,17 @@ public class HtmlToPDFDemo {
             for (Object line : list) {
                 document.add((Element) line);
             }
+            
+            markCircle(canvas, 36, 36, 14);
+            markCircle(canvas, 36, 806, 14);
+            markCircle(canvas, 559, 806, 14);
+            markCircle(canvas, 559, 36, 14);
+            
+            canvas.setRGBColorStroke(0, 0, 0);
+            canvas.rectangle(45, 45, 505, 752);
+            //canvas.fill();
+            canvas.stroke();
+            
             document.close();
             System.out.println("Done");
             Desktop.getDesktop().open(pdfFile);

@@ -87,14 +87,14 @@ import com.lowagie.text.FontProvider;
 import com.lowagie.text.xml.simpleparser.SimpleXMLDocHandler;
 import com.lowagie.text.xml.simpleparser.SimpleXMLParser;
 
-import static com.lowagie.text.html.ex.ExMarkup.*;
-import static com.lowagie.text.html.ex.ExFactoryProperties.*;
+import static com.lowagie.text.html.ex.MarkupEx.*;
+import static com.lowagie.text.html.ex.FactoryPropertiesEx.*;
     /**
      * THIS FILE WAS EDITED TO CHANGE MARKUP.CLASS
      */
 
 
-public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
+public class HTMLWorkerEx implements SimpleXMLDocHandler, DocListener {
 
     protected ArrayList objectList;
 
@@ -122,14 +122,14 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
 
     private HashMap interfaceProps;
 
-    private ExFactoryProperties factoryProperties = new ExFactoryProperties();
+    private FactoryPropertiesEx factoryProperties = new FactoryPropertiesEx();
 
     /**
      * Creates a new instance of HTMLWorker
      * 
      * @param document A class that implements <CODE>DocListener</CODE>
      */
-    public ExHTMLWorker(DocListener document) {
+    public HTMLWorkerEx(DocListener document) {
         this.document = document;
     }
 
@@ -163,7 +163,7 @@ public class ExHTMLWorker implements SimpleXMLDocHandler, DocListener {
     }
 
     public static ArrayList parseToList(Reader reader, StyleSheet style, HashMap interfaceProps) throws IOException {
-        ExHTMLWorker worker = new ExHTMLWorker(null);
+        HTMLWorkerEx worker = new HTMLWorkerEx(null);
         if (style != null)
             worker.style = style;
         worker.document = worker;

@@ -76,7 +76,7 @@ import com.lowagie.text.pdf.HyphenationAuto;
 import com.lowagie.text.pdf.HyphenationEvent;
 import com.lowagie.text.FontProvider;
 
-import static com.lowagie.text.html.ex.ExMarkup.*;
+import static com.lowagie.text.html.ex.MarkupEx.*;
 /**
  * @author psoares
  *
@@ -85,7 +85,7 @@ import static com.lowagie.text.html.ex.ExMarkup.*;
  * 
  */
 
-public class ExFactoryProperties {
+public class FactoryPropertiesEx {
 
     /**
      * @since iText 5.0 This used to be a FontFactoryImp
@@ -93,7 +93,7 @@ public class ExFactoryProperties {
     private FontProvider fontImp = FontFactory.getFontImp();
 
     /** Creates a new instance of FactoryProperties */
-    public ExFactoryProperties() {
+    public FactoryPropertiesEx() {
     }
 
     public Chunk createChunk(String text, ChainedProperties props) {

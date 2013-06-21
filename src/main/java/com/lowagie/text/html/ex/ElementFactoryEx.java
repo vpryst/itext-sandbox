@@ -79,7 +79,7 @@ import com.lowagie.text.Section;
 import com.lowagie.text.Table;
 import com.lowagie.text.Utilities;
 
-import static com.lowagie.text.html.ex.ExMarkup.*;
+import static com.lowagie.text.html.ex.MarkupEx.*;
 
 /**
  * This class is able to create Element objects based on a list of properties.
@@ -87,7 +87,7 @@ import static com.lowagie.text.html.ex.ExMarkup.*;
  * THIS FILE WAS EDITED TO CHANGE MARKUP.CLASS
  * 
  */
-public class ExElementFactory {
+public class ElementFactoryEx {
 
     /**
      * Creates a Chunk object based on a list of properties.

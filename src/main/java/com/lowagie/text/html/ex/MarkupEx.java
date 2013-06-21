@@ -77,7 +77,7 @@ import com.lowagie.text.html.WebColors;
  *  to method parseLength(String string, float actualFontSize)
  */
 
-public class ExMarkup {
+public class MarkupEx {
 
     // iText specific
 

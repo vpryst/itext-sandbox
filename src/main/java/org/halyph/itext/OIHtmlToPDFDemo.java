@@ -10,7 +10,7 @@ import java.util.HashMap;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
-import com.lowagie.text.html.ex.ExHTMLWorker;
+import com.lowagie.text.html.ex.HTMLWorkerEx;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class OIHtmlToPDFDemo {
@@ -31,7 +31,7 @@ public class OIHtmlToPDFDemo {
             document.addCreationDate();
             document.addTitle("Please read this");
 
-            ExHTMLWorker htmlWorker = new ExHTMLWorker(document);
+            HTMLWorkerEx htmlWorker = new HTMLWorkerEx(document);
             String str =
 //                "<table border='1'><tr>"
 //                    +"<td style=\"color: blue\">Javascript HowTo color blue<tr>"
